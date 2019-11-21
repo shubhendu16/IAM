@@ -1,0 +1,31 @@
+import boto3
+
+iam = boto3.client('iam')
+plist = []  # for storing list of policies
+pnames = []  # for storing list of policy names
+parn = []     # for storing list of policy arn
+proles = []    # for storing list of policy roles
+rname = []      # for storing list of role names
+rarn = []         # for storing list of role names
+response = iam.list_policies()
+# print(response)
+pnames.append(response)
+print(pnames)
+for i in response['Policies']:
+    plist.append(i['PolicyName'])
+print(plist)
+
+for j in response['Policies']:
+    parn.append(j['Arn'])
+print(parn)
+
+proles = iam.list_roles()
+print(proles)
+
+for k in proles['Roles']:
+    rname.append(k['RoleName'])
+print(rname)
+
+for a in proles['Roles']:
+    rarn.append(a['Arn'])
+print(rarn)
